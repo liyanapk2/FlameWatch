@@ -1,0 +1,199 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body><form action="/editanimal_post" method="post" enctype="multipart/form-data">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td>Animal name </td>#}
+{#      <td><input type="text" name="textfield" value="{{ ani.animal_name }}" required pattern="[A-Z a-z.]{2,25}"/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Forest division name </td>#}
+{#      <td><select name="select" required>#}
+{#          {% for i in data %}#}
+{#              <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#          {% endfor %}#}
+{#      </select>      </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Image</td>#}
+{#      <td><input type="file" name="file" required /><br>#}
+{#          <img src="{{ ani.image.url }}" width="200px" height="200px">#}
+{##}
+{#      </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Description</td>#}
+{#          <td><input type="text" name="textfield2" value="{{ ani.description }}" required/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="2"><div align="center">#}
+{#        <input type="submit" name="Submit" value="Edit" />#}
+{#      </div></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Edit Animal</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f5e9;
+    padding: 40px 20px;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .back-btn {
+    background-color: #5c7c60;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #4a634e;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2e7031;
+    margin-bottom: 25px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  td label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="file"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .image-preview {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .image-preview img {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  .center {
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a href="javascript:history.back()" class="back-btn"> Back</a>
+    </div>
+
+    <h1>Edit Animal</h1>
+    <form action="/editanimal_post" method="post" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <td><label for="animal_name">Animal Name:</label></td>
+          <td><input type="text" name="textfield" id="animal_name" value="{{ ani.animal_name }}" required pattern="[A-Z a-z.]{2,25}" /></td>
+        </tr>
+        <tr>
+          <td><label for="division">Forest Division Name:</label></td>
+          <td>
+            <select name="select" id="division" required>
+              {% for i in data %}
+                <option value="{{ i.id }}" {% if ani.DIVISION.id == i.id %}selected{% endif %}>{{ i.name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="image">Image:</label></td>
+          <td>
+            <input type="file" name="file" id="image" required />
+            <div class="image-preview">
+              <img src="{{ ani.image.url }}" width="200px" height="200px" alt="Animal Image" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="description">Description:</label></td>
+          <td><input type="text" name="textfield2" id="description" value="{{ ani.description }}" required /></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="center">
+            <input type="submit" name="Submit" value="Edit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>
+

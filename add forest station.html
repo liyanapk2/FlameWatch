@@ -1,0 +1,298 @@
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Add Forest Station</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f4f7f6;#}
+{#    margin: 0;#}
+{#    padding: 20px;#}
+{#  }#}
+{##}
+{#  table {#}
+{#    width: 80%;#}
+{#    margin: 40px auto;#}
+{#    border-collapse: collapse;#}
+{#    background-color: #ffffff;#}
+{#    border: 1px solid #ddd;#}
+{#    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  td {#}
+{#    padding: 12px;#}
+{#    text-align: left;#}
+{#    border: 1px solid #ddd;#}
+{#  }#}
+{##}
+{#  th {#}
+{#    background-color: #007bff;#}
+{#    color: white;#}
+{#    padding: 12px;#}
+{#  }#}
+{##}
+{#  input[type="text"], select {#}
+{#    padding: 8px;#}
+{#    width: 100%;#}
+{#    border: 1px solid #ddd;#}
+{#    border-radius: 4px;#}
+{#    box-sizing: border-box;#}
+{#  }#}
+{##}
+{#  input[type="submit"] {#}
+{#    background-color: #28a745;#}
+{#    color: white;#}
+{#    padding: 10px 20px;#}
+{#    border: none;#}
+{#    border-radius: 4px;#}
+{#    cursor: pointer;#}
+{#    width: 100%;#}
+{#  }#}
+{##}
+{#  input[type="submit"]:hover {#}
+{#    background-color: #218838;#}
+{#  }#}
+{##}
+{#  .form-container {#}
+{#    padding: 20px;#}
+{#    background-color: #f9f9f9;#}
+{#    border-radius: 8px;#}
+{#    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  .center {#}
+{#    text-align: center;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <div class="form-container">#}
+{#    <form action="/addforeststation_post" method="post">#}
+{#      <table>#}
+{#        <tr>#}
+{#          <th colspan="2">Add Forest Station</th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Name:</td>#}
+{#          <td><input type="text" name="textfield" required pattern="[A-Z a-z.]{2,25}" title="Enter valid name" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Place:</td>#}
+{#          <td><input type="text" name="textfield1" required pattern="[A-Z a-z.]{3,25}" title="Enter valid place"/></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Division Name:</td>#}
+{#          <td>#}
+{#            <select name="select" required>#}
+{#              {% for i in data %}#}
+{#                <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#              {% endfor %}#}
+{#            </select>#}
+{#          </td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Post:</td>#}
+{#          <td><input type="text" name="textfield2" required pattern="[A-Z a-z.]{3,25}" title="Enter valid name"/></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Pin:</td>#}
+{#          <td><input type="text" name="textfield3" required pattern="[0-9]{6}" title="Enter valid pin"  /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Contact:</td>#}
+{#          <td><input type="text" name="textfield4" required pattern="[6789][0-9]{9}" title="Enter valid number" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Email:</td>#}
+{#          <td><input type="text" name="textfield5" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Enter valid email" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Latitude:</td>#}
+{#          <td><input type="text" name="textfield6" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td>Longitude:</td>#}
+{#          <td><input type="text" name="textfield7" /></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <td colspan="2">#}
+{#            <div class="center">#}
+{#              <input type="submit" name="Submit" value="Add" />#}
+{#            </div>#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </form>#}
+{#  </div>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Add Forest Station</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f7f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-container {
+    max-width: 700px;
+    margin: 100px auto 40px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .back-btn:hover {
+    background-color: #218838;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    background-color: #28a745;
+    color: white;
+    padding: 16px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 6px 6px 0 0;
+  }
+
+  td {
+    padding: 12px 10px;
+    font-size: 15px;
+  }
+
+  input[type="text"], select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: 0.3s ease;
+  }
+
+  input[type="text"]:focus, select:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 4px #a4e2b8;
+  }
+
+  input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 150px;
+    transition: background-color 0.3s;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  .center {
+    text-align: center;
+    padding-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+  <a href="javascript:history.back()" class="back-btn"> Back</a>
+  <div class="form-container">
+    <form action="/addforeststation_post" method="post">
+      <table>
+        <tr>
+          <th colspan="2">Add Forest Station</th>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="textfield" required pattern="[A-Z a-z.]{2,25}" title="Enter valid name" /></td>
+        </tr>
+        <tr>
+          <td>Place:</td>
+          <td><input type="text" name="textfield1" required pattern="[A-Z a-z.]{3,25}" title="Enter valid place" /></td>
+        </tr>
+        <tr>
+          <td>Division Name:</td>
+          <td>
+            <select name="select" required>
+              {% for i in data %}
+                <option value="{{ i.id }}">{{ i.name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Post:</td>
+          <td><input type="text" name="textfield2" required pattern="[A-Z a-z.]{3,25}" title="Enter valid name" /></td>
+        </tr>
+        <tr>
+          <td>Pin:</td>
+          <td><input type="text" name="textfield3" required pattern="[0-9]{6}" title="Enter valid pin" /></td>
+        </tr>
+        <tr>
+          <td>Contact:</td>
+          <td><input type="text" name="textfield4" required pattern="[6789][0-9]{9}" title="Enter valid number" /></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" name="textfield5" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Enter valid email" /></td>
+        </tr>
+        <tr>
+          <td>Latitude:</td>
+          <td><input type="text" name="textfield6" /></td>
+        </tr>
+        <tr>
+          <td>Longitude:</td>
+          <td><input type="text" name="textfield7" /></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="center">
+              <input type="submit" name="Submit" value="Add" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>
+

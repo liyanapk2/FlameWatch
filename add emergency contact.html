@@ -1,0 +1,125 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="addemergencycontact_post">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td>Contact</td>#}
+{#      <td><input type="text" name="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Details</td>#}
+{#      <td><textarea name="textarea"></textarea></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="2"><div align="center">#}
+{#        <input type="submit" name="Submit" value="Add" />#}
+{#      </div></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Add Emergency Contact</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .form-container {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+  }
+
+  td, th {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #007bff;
+    color: white;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  textarea {
+    height: 100px;
+    resize: vertical;
+  }
+
+  input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+</style>
+</head>
+
+<body>
+  <div class="form-container">
+    <form id="form1" name="form1" method="post" action="addemergencycontact_post">
+      <table>
+        <tr>
+          <td>Contact</td>
+          <td><input type="text" name="textfield" required pattern="[6789][0-9]{9}" title="Enter valid number" /></td>
+        </tr>
+        <tr>
+          <td>Details</td>
+          <td><textarea name="textarea" required></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="center">
+            <input type="submit" name="Submit" value="Add" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>
+

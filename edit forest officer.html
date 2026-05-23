@@ -1,0 +1,182 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body><form action="/editforestofficer_post" method="post" enctype="multipart/form-data">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td>Name</td>#}
+{#      <td><input type="text" name="textfield" value="{{ offi.officer_name }}" required pattern="[A-Z a-z.]{3,25}" title="Enter valid name"/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Email</td>#}
+{#      <td><input type="text" name="textfield2" value="{{ offi.email }}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Enter valid email" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Phone no </td>#}
+{#      <td><input type="text" name="textfield3"  value="{{ offi.phone }}" required  pattern="[6789][0-9]{9}" title="Enter valid number"/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Image</td>#}
+{#      <td><input type="file" name="file" required/><br>#}
+{#          <img src="{{ offi.image.url }}" width="200px" height="200px" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Id proof </td>#}
+{#      <td><input type="file" name="file2" required/><br>#}
+{#          <img src="{{ offi.id_proof.url }}" width="200px" height="200px" />#}
+{#      </td>#}
+{#    </tr>#}
+{##}
+{#    <tr>#}
+{#      <td colspan="2"><div align="center">#}
+{#        <input type="submit" name="Submit" value="Edit" />#}
+{#      </div></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Edit Forest Officer</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .back-btn:hover {
+    background-color: #218838;
+  }
+
+  .form-container {
+    width: 60%;
+    margin: 100px auto 40px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
+
+  td {
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  td:first-child {
+    font-weight: bold;
+    width: 35%;
+  }
+
+  input[type="text"],
+  input[type="file"] {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 40%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  img {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+</style>
+</head>
+
+<body>
+  <a href="javascript:history.back()" class="back-btn"> Back</a>
+
+  <div class="form-container">
+    <form action="/editforestofficer_post" method="post" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" name="textfield" value="{{ offi.officer_name }}" required pattern="[A-Z a-z.]{3,25}" title="Enter valid name" /></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" name="textfield2" value="{{ offi.email }}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Enter valid email" /></td>
+        </tr>
+        <tr>
+          <td>Phone No</td>
+          <td><input type="text" name="textfield3" value="{{ offi.phone }}" required pattern="[6789][0-9]{9}" title="Enter valid number" /></td>
+        </tr>
+        <tr>
+          <td>Image</td>
+          <td>
+            <input type="file" name="file" required />
+            <br />
+            <img src="{{ offi.image.url }}" width="200px" height="200px" />
+          </td>
+        </tr>
+        <tr>
+          <td>ID Proof</td>
+          <td>
+            <input type="file" name="file2" required />
+            <br />
+            <img src="{{ offi.id_proof.url }}" width="200px" height="200px" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="center">
+            <input type="submit" name="Submit" value="Edit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>

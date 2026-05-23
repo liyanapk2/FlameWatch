@@ -1,0 +1,231 @@
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Camera Management</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f8f9fa;#}
+{#    padding: 20px;#}
+{#  }#}
+{##}
+{#  table {#}
+{#    width: 70%;#}
+{#    margin: 20px auto;#}
+{#    border-collapse: collapse;#}
+{#    background-color: #ffffff;#}
+{#    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  th, td {#}
+{#    padding: 12px;#}
+{#    text-align: left;#}
+{#    border: 1px solid #ddd;#}
+{#  }#}
+{##}
+{#  th {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#  }#}
+{##}
+{#  td a {#}
+{#    color: #007bff;#}
+{#    text-decoration: none;#}
+{#    margin-right: 10px;#}
+{#  }#}
+{##}
+{#  td a:hover {#}
+{#    text-decoration: underline;#}
+{#  }#}
+{##}
+{#  .add-link {#}
+{#    display: inline-block;#}
+{#    margin: 20px auto;#}
+{#    padding: 8px 16px;#}
+{#    background-color: #28a745;#}
+{#    color: white;#}
+{#    text-decoration: none;#}
+{#    border-radius: 4px;#}
+{#  }#}
+{##}
+{#  .add-link:hover {#}
+{#    background-color: #218838;#}
+{#  }#}
+{##}
+{#  h1 {#}
+{#    text-align: center;#}
+{#    color: #333;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <h1>Camera Management</h1>#}
+{#  <form action="" method="post">#}
+{#    <table>#}
+{#      <tr>#}
+{#        <td colspan="6" class="add-link">#}
+{#          <a href="/addcamera">Add Camera</a>#}
+{#        </td>#}
+{#      </tr>#}
+{#      <tr>#}
+{#        <th>Sl. No</th>#}
+{#        <th>Camera No</th>#}
+{#        <th>Location</th>#}
+{#        <th>Latitude</th>#}
+{#        <th>Longitude</th>#}
+{#        <th>Actions</th>#}
+{#      </tr>#}
+{##}
+{#      {% for i in data %}#}
+{#        <tr>#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.camera_no }}</td>#}
+{#          <td>{{ i.location }}</td>#}
+{#          <td>{{ i.latitude }}</td>#}
+{#          <td>{{ i.longitude }}</td>#}
+{#          <td>#}
+{#            <a href="/editcamera/{{ i.id }}">Edit</a>#}
+{#            <a href="/deletecamera/{{ i.id }}">Delete</a>#}
+{#          </td>#}
+{#        </tr>#}
+{#      {% endfor %}#}
+{#    </table>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Camera Management</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf5ea;
+    margin: 0;
+    padding: 40px 20px 20px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .back-btn {
+    background-color: #5c7c60;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #4a634e;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2e7031;
+    margin-bottom: 25px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  td a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  td a:hover {
+    text-decoration: underline;
+  }
+
+  .add-link {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 18px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .add-link:hover {
+    background-color: #218838;
+  }
+
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a href="javascript:history.back()" class="back-btn"> Back</a>
+    </div>
+
+    <h1>Camera Management</h1>
+    <form action="" method="post">
+      <a href="/addcamera" class="add-link">+ Add Camera</a>
+      <table>
+        <tr>
+          <th>Sl. No</th>
+          <th>Camera No</th>
+          <th>Location</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Actions</th>
+        </tr>
+
+        {% for i in data %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.camera_no }}</td>
+            <td>{{ i.location }}</td>
+            <td>{{ i.latitude }}</td>
+            <td>{{ i.longitude }}</td>
+            <td>
+              <a href="/editcamera/{{ i.id }}">Edit</a>
+              <a href="/deletecamera/{{ i.id }}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </form>
+  </div>
+</body>
+</html>

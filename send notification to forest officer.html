@@ -1,0 +1,229 @@
+
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Send Notification</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f4f4f9;#}
+{#    padding: 20px;#}
+{#  }#}
+{##}
+{#  table {#}
+{#    width: 60%;#}
+{#    margin: 0 auto;#}
+{#    border-collapse: collapse;#}
+{#    background-color: #fff;#}
+{#    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  td {#}
+{#    padding: 10px;#}
+{#    text-align: left;#}
+{#  }#}
+{##}
+{#  th {#}
+{#    text-align: left;#}
+{#    padding: 10px;#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#  }#}
+{##}
+{#  select, textarea, input[type="submit"] {#}
+{#    width: 100%;#}
+{#    padding: 10px;#}
+{#    margin-top: 5px;#}
+{#    border-radius: 4px;#}
+{#    border: 1px solid #ccc;#}
+{#  }#}
+{##}
+{#  select, textarea {#}
+{#    box-sizing: border-box;#}
+{#  }#}
+{##}
+{#  input[type="submit"] {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    cursor: pointer;#}
+{#    border: none;#}
+{#  }#}
+{##}
+{#  input[type="submit"]:hover {#}
+{#    background-color: #45a049;#}
+{#  }#}
+{##}
+{#  textarea {#}
+{#    resize: vertical;#}
+{#    min-height: 100px;#}
+{#  }#}
+{##}
+{#  .center {#}
+{#    text-align: center;#}
+{#  }#}
+{##}
+{#  h1 {#}
+{#    text-align: center;#}
+{#    color: #333;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <h1>Send Notification</h1>#}
+{#  <form action="/sendnotification_post" method="post">#}
+{#    <table>#}
+{#      <tr>#}
+{#        <td><strong>Officer Name</strong></td>#}
+{#        <td>#}
+{#          <select name="select" required>#}
+{#            {% for i in data %}#}
+{#              <option value="{{ i.id }}">{{ i.officer_name }}</option>#}
+{#            {% endfor %}#}
+{#          </select>#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr>#}
+{#        <td><strong>Notification</strong></td>#}
+{#        <td><textarea name="textarea" required></textarea></td>#}
+{#      </tr>#}
+{##}
+{#      <tr>#}
+{#        <td colspan="2" class="center">#}
+{#          <input type="submit" name="Submit" value="Send" />#}
+{#        </td>#}
+{#      </tr>#}
+{#    </table>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Send Notification</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf5ea;
+    margin: 0;
+    padding: 40px 20px 20px 20px;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .back-btn {
+    background-color: #5F6F52;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #3e4c38;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2e7031;
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 10px 0;
+  }
+
+  select, textarea, input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .center {
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a href="javascript:history.back()" class="back-btn"> Back</a>
+    </div>
+    <h1>Send Notification</h1>
+    <form action="/sendnotification_post" method="post">
+      <table>
+        <tr>
+          <td><strong>Officer Name</strong></td>
+          <td>
+            <select name="select" required>
+              {% for i in data %}
+                <option value="{{ i.id }}">{{ i.officer_name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Notification</strong></td>
+          <td><textarea name="textarea" required></textarea></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="center">
+            <input type="submit" name="Submit" value="Send" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>
+
+

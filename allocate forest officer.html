@@ -1,0 +1,241 @@
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Allocate Officer</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f1f3f5;#}
+{#    padding: 20px;#}
+{#  }#}
+{##}
+{#  table {#}
+{#    width: 50%;#}
+{#    margin: 30px auto;#}
+{#    border-collapse: collapse;#}
+{#    background-color: #ffffff;#}
+{#    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  td {#}
+{#    padding: 12px;#}
+{#    text-align: left;#}
+{#    border: 1px solid #ddd;#}
+{#  }#}
+{##}
+{#  th {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    text-align: left;#}
+{#    padding: 12px;#}
+{#  }#}
+{##}
+{#  select {#}
+{#    width: 100%;#}
+{#    padding: 10px;#}
+{#    margin-top: 5px;#}
+{#    border-radius: 4px;#}
+{#    border: 1px solid #ccc;#}
+{#  }#}
+{##}
+{#  input[type="submit"] {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    border: none;#}
+{#    padding: 10px 20px;#}
+{#    cursor: pointer;#}
+{#    border-radius: 4px;#}
+{#  }#}
+{##}
+{#  input[type="submit"]:hover {#}
+{#    background-color: #45a049;#}
+{#  }#}
+{##}
+{#  .center {#}
+{#    text-align: center;#}
+{#  }#}
+{##}
+{#  h1 {#}
+{#    text-align: center;#}
+{#    color: #333;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <h1>Allocate Forest Officer</h1>#}
+{#  <form action="/allocateofficer_post" method="post">#}
+{#    <table>#}
+{#      <tr>#}
+{#        <td><strong>Station</strong></td>#}
+{#        <td>#}
+{#          <select name="select" required>#}
+{#            {% for i in val %}#}
+{#              <option value="{{ i.id }}">{{ i.station_name }}</option>#}
+{#            {% endfor %}#}
+{#          </select>#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr>#}
+{#        <td><strong>Forest Officer</strong></td>#}
+{#        <td>#}
+{#          <select name="select2" required>#}
+{#            {% for i in data %}#}
+{#              <option value="{{ i.id }}">{{ i.officer_name }}</option>#}
+{#            {% endfor %}#}
+{#          </select>#}
+{#        </td>#}
+{#      </tr>#}
+{##}
+{#      <tr>#}
+{#        <td colspan="2" class="center">#}
+{#          <input type="submit" name="Submit" value="Allocate" />#}
+{#        </td>#}
+{#      </tr>#}
+{#    </table>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Allocate Officer</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf5ea;
+    margin: 0;
+    padding: 40px 20px 20px 20px;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .back-btn {
+    background-color: #5F6F52;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #3e4c38;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2e7031;
+    margin-bottom: 25px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+    padding: 12px;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .center {
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a href="javascript:history.back()" class="back-btn"> Back</a>
+    </div>
+
+    <h1>Allocate Forest Officer</h1>
+
+    <form action="/allocateofficer_post" method="post">
+      <table>
+        <tr>
+          <td><strong>Station</strong></td>
+          <td>
+            <select name="select" required>
+              {% for i in val %}
+                <option value="{{ i.id }}">{{ i.station_name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Forest Officer</strong></td>
+          <td>
+            <select name="select2" required>
+              {% for i in data %}
+                <option value="{{ i.id }}">{{ i.officer_name }}</option>
+              {% endfor %}
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="center">
+            <input type="submit" name="Submit" value="Allocate" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>

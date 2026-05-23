@@ -1,0 +1,169 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body><form action="" method="post" enctype="multipart/form-data">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td colspan="2" class="center"><a href="/officerhome">Back</a></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Profile</td>#}
+{#      <td><img src="{{ data.image.url }}" height="100px" width="100px" alt=""/>&nbsp;</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Name</td>#}
+{#      <td>{{ data.officer_name }}&nbsp;</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Email</td>#}
+{#      <td>{{ data.email }}&nbsp;</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Phone</td>#}
+{#      <td>{{ data.phone }}&nbsp;</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>ID Proof </td>#}
+{#      <td>&nbsp;<img src="{{ data.id_proof.url }}" width="100px" height="100px"/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="2"><div align="center">#}
+{#        <input type="submit" name="Submit" value="Back" />#}
+{#      </div></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Officer Profile</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    form {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 12px;
+        text-align: left;
+        font-size: 14px;
+        border: 1px solid #ddd;
+    }
+
+    td img {
+        border-radius: 8px;
+    }
+
+    .center {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none;
+        color: #4CAF50;
+        font-weight: bold;
+    }
+
+    a:hover {
+        color: #45a049;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 14px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    .profile-heading {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .profile-table td {
+        vertical-align: middle;
+    }
+
+    .profile-table td:first-child {
+        font-weight: bold;
+    }
+
+    .profile-image {
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="profile-heading">Officer Profile</div>
+        <table class="profile-table">
+            <tr>
+                <td colspan="2" class="center"><a href="/officerhome">Back</a></td>
+            </tr>
+            <tr>
+                <td>Profile</td>
+                <td class="profile-image">
+                    <img src="{{ data.image.url }}" height="100px" width="100px" alt="Profile Image" />
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{ data.officer_name }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ data.email }}</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>{{ data.phone }}</td>
+            </tr>
+            <tr>
+                <td>ID Proof</td>
+                <td class="profile-image">
+                    <img src="{{ data.id_proof.url }}" width="100px" height="100px" alt="ID Proof" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+

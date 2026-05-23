@@ -1,0 +1,215 @@
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Reports</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f4f4f4;#}
+{#    padding: 20px;#}
+{#    display: flex;#}
+{#    justify-content: center;#}
+{#    align-items: center;#}
+{#    height: 100vh;#}
+{#  }#}
+{#  table {#}
+{#    width: 60%;#}
+{#    border-collapse: collapse;#}
+{#    background: #fff;#}
+{#    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);#}
+{#    border-radius: 8px;#}
+{#    overflow: hidden;#}
+{#  }#}
+{#  th, td {#}
+{#    padding: 10px;#}
+{#    text-align: center;#}
+{#    border: 1px solid #ddd;#}
+{#  }#}
+{#  th {#}
+{#    background-color: #007bff;#}
+{#    color: white;#}
+{#  }#}
+{#  tr:nth-child(even) {#}
+{#    background-color: #f9f9f9;#}
+{#  }#}
+{#  a {#}
+{#    display: inline-block;#}
+{#    padding: 8px 12px;#}
+{#    background: #28a745;#}
+{#    color: white;#}
+{#    text-decoration: none;#}
+{#    border-radius: 4px;#}
+{#  }#}
+{#  a:hover {#}
+{#    background: #218838;#}
+{#  }#}
+{#  .delete-btn {#}
+{#    background: #dc3545;#}
+{#  }#}
+{#  .delete-btn:hover {#}
+{#    background: #c82333;#}
+{#  }#}
+{#  img {#}
+{#    border-radius: 5px;#}
+{#    border: 1px solid #ddd;#}
+{#    padding: 5px;#}
+{#  }#}
+{#  .container {#}
+{#    text-align: center;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{#<body>#}
+{#<div class="container">#}
+{#  <a href="/sendreport">Add Report</a>#}
+{#  <table>#}
+{#    <tr>#}
+{#      <th>Report</th>#}
+{#      <th>Date</th>#}
+{#      <th>Action</th>#}
+{#    </tr>#}
+{#    {% for i in data %}#}
+{#    <tr>#}
+{#      <td><img src="{{i.report.url }}" width="200px" height="200px"></td>#}
+{#      <td>{{ i.date }}</td>#}
+{#      <td><a href="/deletereportoffi/{{ i.id }}" class="delete-btn">Delete</a></td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#  </table>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Reports</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .back-btn:hover {
+    background-color: #218838;
+  }
+
+  .container {
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 4px;
+    background: #fff;
+  }
+
+  .add-btn {
+    background: #28a745;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+
+  .add-btn:hover {
+    background: #218838;
+  }
+
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .delete-btn:hover {
+    background: #c82333;
+  }
+</style>
+</head>
+<body>
+
+<a href="javascript:history.back()" class="back-btn"> Back</a>
+
+<div class="container">
+  <a href="/sendreport" class="add-btn">Add Report</a>
+  <table>
+    <tr>
+      <th>Report</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td><img src="{{ i.report.url }}" alt="Report Image"></td>
+      <td>{{ i.date }}</td>
+      <td><a href="/deletereportoffi/{{ i.id }}" class="delete-btn">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+</body>
+</html>

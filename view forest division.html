@@ -1,0 +1,291 @@
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Forest Division</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f8f9fa;#}
+{#    margin: 0;#}
+{#    padding: 20px;#}
+{#  }#}
+{##}
+{#  table {#}
+{#    width: 80%;#}
+{#    margin: 20px auto;#}
+{#    border-collapse: collapse;#}
+{#    background-color: #ffffff;#}
+{#    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  td, th {#}
+{#    padding: 12px;#}
+{#    text-align: left;#}
+{#    border: 1px solid #ddd;#}
+{#  }#}
+{##}
+{#  th {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    text-align: center;#}
+{#  }#}
+{##}
+{#  td a {#}
+{#    color: #007bff;#}
+{#    text-decoration: none;#}
+{#    margin-right: 10px;#}
+{#  }#}
+{##}
+{#  td a:hover {#}
+{#    text-decoration: underline;#}
+{#  }#}
+{##}
+{#  input[type="text"], input[type="submit"] {#}
+{#    padding: 8px 12px;#}
+{#    margin-top: 5px;#}
+{#    border: 1px solid #ccc;#}
+{#    border-radius: 4px;#}
+{#  }#}
+{##}
+{#  input[type="submit"] {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    border: none;#}
+{#    cursor: pointer;#}
+{#  }#}
+{##}
+{#  input[type="submit"]:hover {#}
+{#    background-color: #45a049;#}
+{#  }#}
+{##}
+{#  .center {#}
+{#    text-align: center;#}
+{#  }#}
+{##}
+{#  label {#}
+{#    font-weight: bold;#}
+{#    color: #333;#}
+{#  }#}
+{##}
+{#  .search-container {#}
+{#    margin-bottom: 20px;#}
+{#    padding: 10px;#}
+{#    background-color: #f1f1f1;#}
+{#    border-radius: 5px;#}
+{#  }#}
+{##}
+{#  .add-link {#}
+{#    font-weight: bold;#}
+{#    color: #007bff;#}
+{#  }#}
+{##}
+{#  .add-link:hover {#}
+{#    text-decoration: underline;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <form id="form1" name="form1" method="post" action="/searchforestdivision">#}
+{#    <div class="search-container">#}
+{#      <table>#}
+{#        <tr>#}
+{#          <td><a href="/addforestdivision" class="add-link">Add</a></td>#}
+{#          <td colspan="4">#}
+{#            <label for="area">Area:</label>#}
+{#            <input type="text" name="textfield" value="{{ area }}" id="area" />#}
+{#            <input type="submit" name="Submit2" value="Go" />#}
+{#          </td>#}
+{#        </tr>#}
+{#      </table>#}
+{#    </div>#}
+{##}
+{#    <table>#}
+{#      <tr>#}
+{#        <th>ID</th>#}
+{#        <th>Name</th>#}
+{#        <th>Area</th>#}
+{#        <th>Details</th>#}
+{#        <th>Actions</th>#}
+{#      </tr>#}
+{#      {% for i in data %}#}
+{#      <tr>#}
+{#        <td>{{ forloop.counter }}</td>#}
+{#        <td>{{ i.name }}</td>#}
+{#        <td>{{ i.area }}</td>#}
+{#        <td>{{ i.details }}</td>#}
+{#        <td>#}
+{#          <a href="/editforestdivision/{{ i.id }}">Edit</a>#}
+{#          <a href="/deleteforestdivision/{{ i.id }}">Delete</a>#}
+{#        </td>#}
+{#      </tr>#}
+{#      {% endfor %}#}
+{#    </table>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Forest Division</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #5c7c60;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #4a634e;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 10px;
+  }
+
+  .search-container {
+    margin: 20px auto;
+    background-color: #f7f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 95%;
+  }
+
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  input[type="submit"] {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #256d45;
+  }
+
+  .add-link {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 15px;
+    text-decoration: none;
+  }
+
+  .add-link:hover {
+    text-decoration: underline;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  td a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+
+  td a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <a href="javascript:history.back()" class="back-btn"> Back</a>
+    <h1>Forest Division</h1>
+    <form id="form1" name="form1" method="post" action="/searchforestdivision">
+      <div class="search-container">
+        <a href="/addforestdivision" class="add-link">+ Add Forest Division</a>
+        <label for="area">Area:</label>
+        <input type="text" name="textfield" value="{{ area }}" id="area" />
+        <input type="submit" name="Submit2" value="Go" />
+      </div>
+
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Area</th>
+          <th>Details</th>
+          <th>Actions</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.name }}</td>
+          <td>{{ i.area }}</td>
+          <td>{{ i.details }}</td>
+          <td>
+            <a href="/editforestdivision/{{ i.id }}">Edit</a>
+            <a href="/deleteforestdivision/{{ i.id }}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </form>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,163 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body><form action="/editforestdivision_post" method="post">#}
+{#  <table width="200" border="1">#}
+{#    <tr>#}
+{#      <td>Name:</td>#}
+{#      <td><label>#}
+{#        <input type="text" name="textfield" value="{{ div.name }}" required pattern="[A-Z a-z.]{3,25}" title="Enter valid name"/>#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Area:</td>#}
+{#      <td><label>#}
+{#        <textarea name="textarea" required pattern="[A-Z a-z.]{3,25}" title="Enter valid place"> {{ div.area }}</textarea>#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Details</td>#}
+{#      <td><label>#}
+{#        <textarea name="textarea2" required> {{ div.details }}</textarea>#}
+{#      </label></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="2"><label>#}
+{#        <div align="center">#}
+{#          <input type="submit" name="Submit" value="edit" />#}
+{#          </div>#}
+{#      </label></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Edit Forest Division</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #6c757d;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #5a6268;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 12px;
+    vertical-align: top;
+  }
+
+  label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .center {
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <a href="javascript:history.back()" class="back-btn"> Back</a>
+    <h1>Edit Forest Division</h1>
+    <form action="/editforestdivision_post" method="post">
+      <table>
+        <tr>
+          <td><label for="name">Name:</label></td>
+          <td><input type="text" name="textfield" id="name" value="{{ div.name }}" required pattern="[A-Z a-z.]{3,25}" title="Enter valid name" /></td>
+        </tr>
+        <tr>
+          <td><label for="area">Area:</label></td>
+          <td><textarea name="textarea" id="area" required pattern="[A-Z a-z.]{3,25}" title="Enter valid place">{{ div.area }}</textarea></td>
+        </tr>
+        <tr>
+          <td><label for="details">Details:</label></td>
+          <td><textarea name="textarea2" id="details" required>{{ div.details }}</textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="center">
+            <input type="submit" name="Submit" value="edit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>

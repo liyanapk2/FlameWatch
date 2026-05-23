@@ -1,0 +1,221 @@
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Alert List</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #eef2f3;#}
+{#    display: flex;#}
+{#    justify-content: center;#}
+{#    align-items: center;#}
+{#    height: 100vh;#}
+{#    flex-direction: column;#}
+{#  }#}
+{#  .table-container {#}
+{#    width: 90%;#}
+{#    max-width: 800px;#}
+{#    background: #fff;#}
+{#    padding: 20px;#}
+{#    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);#}
+{#    border-radius: 10px;#}
+{#    text-align: center;#}
+{#  }#}
+{#  table {#}
+{#    width: 100%;#}
+{#    border-collapse: collapse;#}
+{#    margin-top: 10px;#}
+{#  }#}
+{#  th, td {#}
+{#    padding: 12px;#}
+{#    border: 1px solid #ddd;#}
+{#    text-align: center;#}
+{#  }#}
+{#  th {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#  }#}
+{#  tr:nth-child(even) {#}
+{#    background-color: #f2f2f2;#}
+{#  }#}
+{#  tr:hover {#}
+{#    background-color: #ddd;#}
+{#  }#}
+{#  .add-btn, .delete-btn {#}
+{#    display: inline-block;#}
+{#    padding: 8px 12px;#}
+{#    text-decoration: none;#}
+{#    border-radius: 5px;#}
+{#    color: white;#}
+{#  }#}
+{#  .add-btn {#}
+{#    background-color: #007bff;#}
+{#    margin-bottom: 10px;#}
+{#  }#}
+{#  .add-btn:hover {#}
+{#    background-color: #0056b3;#}
+{#  }#}
+{#  .delete-btn {#}
+{#    background-color: #d9534f;#}
+{#  }#}
+{#  .delete-btn:hover {#}
+{#    background-color: #c9302c;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{#<body>#}
+{#<div class="table-container">#}
+{#  <a href="/sendalerttouser" class="add-btn">Add Alert</a>#}
+{#  <table>#}
+{#    <tr>#}
+{#      <th>Sl No</th>#}
+{#      <th>Alert</th>#}
+{#      <th>Longitude</th>#}
+{#      <th>Latitude</th>#}
+{#      <th>Action</th>#}
+{#    </tr>#}
+{#    {% for i in data %}#}
+{#    <tr>#}
+{#      <td>{{ forloop.counter }}</td>#}
+{#      <td>{{ i.alert }}</td>#}
+{#      <td>{{ i.longitude }}</td>#}
+{#      <td>{{ i.latitude }}</td>#}
+{#      <td><a href="/deletesendalerttouser/{{ i.id }}" class="delete-btn">Delete</a></td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#  </table>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Alert List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .back-btn:hover {
+    background-color: #218838;
+  }
+
+  .table-container {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+
+  th {
+    background-color: #28a745;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  .add-btn, .delete-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .add-btn {
+    background-color: #28a745;
+    margin-bottom: 10px;
+  }
+
+  .add-btn:hover {
+    background-color: #218838;
+  }
+
+  .delete-btn {
+    background-color: #d9534f;
+  }
+
+  .delete-btn:hover {
+    background-color: #c9302c;
+  }
+</style>
+</head>
+<body>
+
+<a href="javascript:history.back()" class="back-btn"> Back</a>
+
+<div class="table-container">
+  <a href="/sendalerttouser" class="add-btn">Add Alert</a>
+  <table>
+    <tr>
+      <th>Sl No</th>
+      <th>Alert</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Action</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.alert }}</td>
+      <td>{{ i.longitude }}</td>
+      <td>{{ i.latitude }}</td>
+      <td><a href="/deletesendalerttouser/{{ i.id }}" class="delete-btn">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+</body>
+</html>

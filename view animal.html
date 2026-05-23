@@ -1,0 +1,299 @@
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />#}
+{#<title>Animal Management</title>#}
+{#<style>#}
+{#  body {#}
+{#    font-family: Arial, sans-serif;#}
+{#    background-color: #f1f3f5;#}
+{#    padding: 20px;#}
+{#  }#}
+{##}
+{#  table {#}
+{#    width: 70%;#}
+{#    margin: 20px auto;#}
+{#    border-collapse: collapse;#}
+{#    background-color: #ffffff;#}
+{#    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);#}
+{#  }#}
+{##}
+{#  td {#}
+{#    padding: 12px;#}
+{#    text-align: left;#}
+{#    border: 1px solid #ddd;#}
+{#  }#}
+{##}
+{#  th {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    padding: 12px;#}
+{#  }#}
+{##}
+{#  td a {#}
+{#    color: #007bff;#}
+{#    text-decoration: none;#}
+{#    margin-right: 10px;#}
+{#  }#}
+{##}
+{#  td a:hover {#}
+{#    text-decoration: underline;#}
+{#  }#}
+{##}
+{#  input[type="text"] {#}
+{#    padding: 8px;#}
+{#    margin: 5px 0;#}
+{#    border-radius: 4px;#}
+{#    border: 1px solid #ccc;#}
+{#    width: 60%;#}
+{#  }#}
+{##}
+{#  input[type="submit"] {#}
+{#    background-color: #4CAF50;#}
+{#    color: white;#}
+{#    padding: 8px 15px;#}
+{#    border: none;#}
+{#    border-radius: 4px;#}
+{#    cursor: pointer;#}
+{#  }#}
+{##}
+{#  input[type="submit"]:hover {#}
+{#    background-color: #45a049;#}
+{#  }#}
+{##}
+{#  .add-link {#}
+{#    display: inline-block;#}
+{#    margin: 20px;#}
+{#    padding: 8px 16px;#}
+{#    background-color: #28a745;#}
+{#    color: white;#}
+{#    text-decoration: none;#}
+{#    border-radius: 4px;#}
+{#  }#}
+{##}
+{#  .add-link:hover {#}
+{#    background-color: #218838;#}
+{#  }#}
+{##}
+{#  img {#}
+{#    border-radius: 4px;#}
+{#  }#}
+{##}
+{#  h1 {#}
+{#    text-align: center;#}
+{#    color: #333;#}
+{#  }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#  <h1>Animal Management</h1>#}
+{#  <form action="/searchanimal" method="post">#}
+{#    <table>#}
+{#      <tr>#}
+{#        <td colspan="5" class="add-link">#}
+{#          <a href="/addanimal">Add Animal</a>#}
+{#        </td>#}
+{#      </tr>#}
+{#      <tr>#}
+{#        <td colspan="4">#}
+{#          <input type="text" name="textfield" placeholder="Search by Name" />#}
+{#          <input type="submit" name="Submit" value="Go" />#}
+{#        </td>#}
+{#      </tr>#}
+{#      <tr>#}
+{#        <th>Animal Name</th>#}
+{#        <th>Forest Division Name</th>#}
+{#        <th>Image</th>#}
+{#        <th>Description</th>#}
+{#        <th>Actions</th>#}
+{#      </tr>#}
+{##}
+{#      {% for i in data %}#}
+{#        <tr>#}
+{#          <td>{{ i.animal_name }}</td>#}
+{#          <td>{{ i.DIVISION.name }}</td>#}
+{#          <td><img src="{{ i.image.url }}" width="200px" height="200px" alt="{{ i.animal_name }} image"></td>#}
+{#          <td>{{ i.description }}</td>#}
+{#          <td>#}
+{#            <a href="/editanimal/{{ i.id }}">Edit</a>#}
+{#            <a href="/deleteanimal/{{ i.id }}">Delete</a>#}
+{#          </td>#}
+{#        </tr>#}
+{#      {% endfor %}#}
+{#    </table>#}
+{#  </form>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Animal Management</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f5e9;
+    margin: 0;
+    padding: 40px 20px 20px 20px;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .back-btn {
+    background-color: #5c7c60;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-btn:hover {
+    background-color: #4a634e;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2e7031;
+    margin-bottom: 25px;
+  }
+
+  .add-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 10px 18px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .add-link:hover {
+    background-color: #218838;
+  }
+
+  input[type="text"] {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 250px;
+    margin-right: 10px;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  td a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  td a:hover {
+    text-decoration: underline;
+  }
+
+  img {
+    border-radius: 6px;
+    object-fit: cover;
+    max-width: 100%;
+  }
+
+  .form-row {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a href="javascript:history.back()" class="back-btn"> Back</a>
+    </div>
+
+    <h1>Animal Management</h1>
+
+    <form action="/searchanimal" method="post">
+      <div class="form-row">
+        <a href="/addanimal" class="add-link">+ Add Animal</a><br/><br/>
+        <input type="text" name="textfield" placeholder="Search by Name" />
+        <input type="submit" name="Submit" value="Go" />
+      </div>
+
+      <table>
+        <tr>
+          <th>Animal Name</th>
+          <th>Forest Division Name</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+
+        {% for i in data %}
+          <tr>
+            <td>{{ i.animal_name }}</td>
+            <td>{{ i.DIVISION.name }}</td>
+            <td><img src="{{ i.image.url }}" width="200px" height="200px" alt="{{ i.animal_name }} image" /></td>
+            <td>{{ i.description }}</td>
+            <td>
+              <a href="/editanimal/{{ i.id }}">Edit</a>
+              <a href="/deleteanimal/{{ i.id }}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </form>
+  </div>
+</body>
+</html>
